@@ -12,12 +12,19 @@ export const MenuRepository = {
         r.city
       FROM menu_items m
       JOIN restaurants r ON r.id = m.restaurant_id
-      WHERE LOWER(m.dish_name) LIKE LOWER($1)
+      WHERE m.dish_name ILIKE $1
       AND m.price BETWEEN $2 AND $3
+      ORDER BY m.price ASC
     `;
 
     const values = [`%${dishName}%`, minPrice, maxPrice];
     const result = await pool.query(query, values);
+    return result.rows;
+  },
+
+  async getAll() {
+    const query = `SELECT * FROM menu_items ORDER BY id ASC`;
+    const result = await pool.query(query);
     return result.rows;
   }
 };

@@ -7,9 +7,12 @@ export const SearchController = {
     try {
       const { name, minPrice, maxPrice } = req.query;
 
-      if (!name) throw new ApiError(400, "Dish name is required");
-      if (!validatePrice(minPrice, maxPrice))
-        throw new ApiError(400, "Valid price range required");
+      if (!name) {
+        res.json({message:"name is required"})
+      }
+      if (!validatePrice(minPrice, maxPrice)) {
+        res.json({message:"Valid price range required"})
+      }
 
       const results = await SearchService.searchByDish(
         name,
