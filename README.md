@@ -141,16 +141,18 @@ cd restaurants-management
 npm install
 ```
 
-### **3. Configure Database**
 
-Create a MySQL database and update `.env`:
+## 3 🔧 Environment Variables (.env)
+
+Create a `.env` file in the project root and add the following:
 
 ```
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=yourpassword
-DB_NAME=restaurants_db
+DATABASE_URL="postgresql://postgres:cwvBhTvZIVyMhvKnEAIECidfgDAJWbGz@maglev.proxy.rlwy.net:51209/railway"
+PORT=5000
 ```
+
+This project uses a **PostgreSQL database hosted on Railway**, connected through the `DATABASE_URL`.
+
 
 ### **4. Import Seed Data**
 
